@@ -58,8 +58,8 @@ class Movie(models.Model):
     fees_in_usa = models.PositiveSmallIntegerField("US fees", default=0, help_text='Specify dollar amount')
     world_in_usa = models.PositiveSmallIntegerField("World fees", default=0, help_text='Specify dollar amount')
     category = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True)
-    url = models.SlugField(max_length=100, unique=True)
-    draft = models.BinaryField("Draft", default=False)
+    url = models.SlugField(max_length=160, unique=True)
+    draft = models.BooleanField("Draft", default=False)
 
     def __str__(self):
         return self.title
