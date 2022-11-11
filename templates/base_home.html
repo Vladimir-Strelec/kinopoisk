@@ -31,29 +31,32 @@
     {% include 'include/header.html' %}
     <!-- banner -->
     <section class="ab-info-main py-md-5 py-4 editContent" style="padding-left: 3rem; padding-right: 3rem;">
-        <div class="container-fluid py-md-3">
-            <div class="row">
+        {% block container %}
+            <div class="container-fluid py-md-3">
 
 
-            {% include 'include/side-bar.html' %}
-            <div id="page" class="page">
+                <div class="row">
 
 
+                    {% include 'include/side-bar.html' %}
 
-                {% block content %}
-                {% endblock %}
 
-                {% include 'include/footer.html' %}
+                    <div class="col-md-4 product-men">
+                        <div class="product-shoe-info editContent text-center mt-lg-4">
+                        <div class="men-thumb-item">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                        </div>
+                    </div>
+                    {% include 'include/footer.html' %}
+                </div>
+
             </div>
 
-            </div>
-        </div>
+        {% endblock %}
     </section>
     <!-- //contact -->
-
-
-
-
 
 
     <div class="cpy-right py-3">
