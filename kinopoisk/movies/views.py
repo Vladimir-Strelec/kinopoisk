@@ -15,15 +15,11 @@ class MovieDetailView(DetailView):
     model = Movie
     template_name = "movies/moviesingle.html"
 
-    # def get(self, request, **kwargs):
-    #     movie = Movie.objects.get(pk=self.kwargs['pk'])
-    #     directors = Actor.objects.filter(film_director__actors__movie=self.kwargs['pk'])
-    #     actors = Actor.objects.filter(movie__actors__movie=self.kwargs['pk'])
-    #     rating_star = RatingStar.objects.filter(rating__movie_id=self.kwargs['pk'])
-    #     return render(request, "movies/moviesingle.html", {'movie': movie})
+    def get_context_data(self, **kwargs):
+        context = {
+            'movie_shots': MovieShots.objects.filter(movie_id=kwargs['object'].pk),
+            'movie': Movie.objects.get(pk=self.kwargs['pk']),
+            'movie_side_bar': Movie.objects.all()[0:5:-1],
+        }
+        return context
 
-
-class SideBarView(ListView):
-    model = Movie
-    queryset = Movie.objects.all()[:5]
-    template_name = "include/side-bar.html"

@@ -103,8 +103,8 @@ class Rating(models.Model):
         return f"{self.star} - {self.movie}"
 
     class Meta:
-        verbose_name = "rating star"
-        verbose_name_plural = "rating stars"
+        verbose_name = "rating"
+        verbose_name_plural = "ratings"
 
 
 class Reviews(models.Model):
