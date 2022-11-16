@@ -5,7 +5,7 @@
         <div class="contact-single">
             <h3 class="editContent" style="outline: none; cursor: inherit;">
                                     <span class="sub-tittle editContent"
-                                          style="outline: none; cursor: inherit;">02</span>Оставить отзыв</h3>
+                                          style="outline: none; cursor: inherit;"></span>Оставить отзыв</h3>
             <form action="#" method="get" class="mt-4">
                 <div class="form-group editContent"
                      style="outline: none; cursor: inherit;">
@@ -41,33 +41,44 @@
         </div>
         <!--  //contact form grid ends here -->
     </div>
-    <div class="media py-5">
-        {% for review in movie.reviews_set.all %}
-        <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image" style="outline: none; cursor: inherit;">
-        <div class="media-body mt-4">
-            <h5 class="mt-0 editContent"
-                style="outline: none; cursor: inherit;">{{ review.name }}</h5>
+    {% for review in movie.reviews_set.all %}
+        <div class="media py-5">
+
+        {% if not review.parent_id %}
+            <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image"
+                 style="outline: none; cursor: inherit;">
+            <div class="media-body mt-4" >
+
+            <h5 class="mt-0 editContent" style="outline: none; cursor: inherit;">
+                {{ review.name }}
+            </h5>
             <p class="mt-2 editContent" style="outline: none; cursor: inherit;">
                 {{ review.text }}
             </p>
-            <div class="media mt-5 editContent"
-                 style="outline: none; cursor: inherit;">
-                <a class="pr-3" href="#">
-                    <img src="{% static '/images/te1.jpg' %}" class="img-fluid "
-                         alt="image" style="outline: none; cursor: inherit;">
-                </a>
-                <div class="media-body">
-                    <h5 class="mt-0 editContent"
-                        style="outline: none; cursor: inherit;">Leia Organa</h5>
-                    <p class="mt-2 editContent"
-                       style="outline: none; cursor: inherit;"> Cras sit amet
-                        nibh libero, in gravida nulla. Nulla vel metus
-                        scelerisque ante sollicitudin. Cras purus odio,
-                        vestibulum in vulputate at, tempus viverra turpis. Fusce
-                        condimentum nunc ac nisi vulputate fringilla..</p>
-                </div>
+        {% endif %}
+    <hr style="background-color: #1b1e21">
+    {% for parents in review.reviews_set.all %}
+        <div class="media mt-5 editContent" style="outline: none; cursor: inherit; border-radius: 15px; background-color: #1b1e21;">
+
+            <a class="pr-3" href="#">
+                <img src="{% static '/images/te1.jpg' %}" class="img-fluid " alt="image"
+                     style="outline: none; cursor: inherit;">
+            </a>
+
+            <div class="media-body">
+                <h5 class="mt-0 editContent" style="outline: none; cursor: inherit;">
+                    {{ parents.name }}
+                </h5>
+{#                class="mt-2 editContent"#}
+                <p class="mt-2 editContent" style="outline: none; cursor: inherit;">
+                    {{ parents.text }}
+                </p>
             </div>
+
         </div>
-        {% endfor %}
+
+    {% endfor %}
+    </div>
+    {% endfor %}
     </div>
 </div>

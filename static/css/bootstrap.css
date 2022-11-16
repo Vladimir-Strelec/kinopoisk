@@ -5148,8 +5148,11 @@ tbody.collapse.show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 0 auto;
   -webkit-box-align: start;
-  -ms-flex-align: start;
+  /*-ms-flex-align: start;*/
   align-items: flex-start;
 }
 
