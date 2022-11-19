@@ -16,10 +16,12 @@ class MovieDetailView(DetailView):
     template_name = "movies/moviesingle.html"
 
     def get_context_data(self, **kwargs):
+        rating_value = [RatingStar.objects.get(id=v['star_id']).value for v in Rating.objects.prefetch_related().filter(movie_id=self.kwargs['pk']).values()]
         context = {
             'movie_shots': MovieShots.objects.filter(movie_id=kwargs['object'].pk),
             'movie': Movie.objects.get(pk=self.kwargs['pk']),
             'movie_side_bar': Movie.objects.all()[0:5:-1],
+            'rating_star': sum(rating_value) / len(rating_value),
         }
         return context
 

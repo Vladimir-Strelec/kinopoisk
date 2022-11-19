@@ -89,19 +89,34 @@
 
                         </iframe>
                         <li style="list-style: none">
-                            <a href="#"><b>{{ rating_star }}:</b>
-                                <span class="fa fa-star" aria-hidden="true"
-                                      style="outline: none; cursor: inherit;"></span>
-                                <span class="fa fa-star" aria-hidden="true"
-                                      style="outline: none; cursor: inherit;"></span>
-                                <span class="fa fa-star" aria-hidden="true"
-                                      style="outline: none; cursor: inherit;"></span>
-                                <span class="fa fa-star" aria-hidden="true"
-                                      style="outline: none; cursor: inherit;"></span>
-                                <span class="fa fa-star" aria-hidden="true"
-                                      style="outline: none; cursor: inherit;"></span>
+                            <a href="#"><b>Rating star:</b>
+                                {#                                {% for obj in movie.rating_set.all %}#}
+                                {#                                    {{ obj.star.value }}#}
+                                {#                                        <span class="fa fa-star" aria-hidden="true"#}
+                                {#                                              style="outline: none; cursor: inherit;"></span>#}
+                                {#                                    {% endfor %}#}
+                                {% with ''|center:5 as range %}
+                                    {% for _ in range %}
+
+                                        {% if forloop.counter <= rating_star %}
+                                            <span class="fa fa-star" aria-hidden="true" style="outline: none; cursor: inherit;"></span>
+                                        {% else %}
+                                            <span class="fa fa-star-half-o" aria-hidden="true"></span>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                {% endwith %}
+
+
+
+{#                                <span class="fa fa-star" aria-hidden="true"#}
+{#                                      style="outline: none; cursor: inherit;"></span>#}
+{#                                <span class="fa fa-star" aria-hidden="true"#}
+{#                                      style="outline: none; cursor: inherit;"></span>#}
+{#                                <span class="fa fa-star" aria-hidden="true"#}
+{#                                      style="outline: none; cursor: inherit;"></span>#}
                                 <span class="editContent"
-                                      style="outline: none; cursor: inherit;">5.0</span>
+                                      style="outline: none; cursor: inherit;">{{ rating_star|floatformat }}</span>
                             </a>
                         </li>
 
@@ -144,13 +159,13 @@
 
                     <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
                         About the film {{ movie.title }}</h3>
-{#                    <div class="row">#}
+                    {#                    <div class="row">#}
                     <p>
                         {% for shot in movie.movieshots_set.all %}
-                            <img src="{{ shot.image.url }}" class="img-fluid" width="280"  alt="">
+                            <img src="{{ shot.image.url }}" class="img-fluid" width="280" alt="">
                         {% endfor %}
                     </p>
-{#                    </div>#}
+                    {#                    </div>#}
                     <p class="editContent" style="outline: none; cursor: inherit;"></p>
                     <p class="mt-3 italic-blue editContent"
                        style="outline: none; cursor: inherit;">
@@ -161,18 +176,18 @@
                     </p>
                 </div>
                 <hr>
-            <!-- comments -->
-            {% include 'include/comments.html' %}
+                <!-- comments -->
+                {% include 'include/comments.html' %}
 
-            <!-- //comments -->
+                <!-- //comments -->
 
             </div>
 
         </div>
 
-        </section>
-        </div>
     </section>
+    </div>
+</section>
 
 
 <!-- footer -->

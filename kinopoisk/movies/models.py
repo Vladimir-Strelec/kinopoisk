@@ -86,7 +86,7 @@ class MovieShots(models.Model):
 class RatingStar(models.Model):
     value = models.SmallIntegerField("Value", default=0)
 
-    def __str__(self):
+    def __wrap__(self):
         return self.value
 
     class Meta:
